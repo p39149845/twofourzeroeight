@@ -28,8 +28,12 @@ namespace twozerofoureight
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel)m).GetBoard());
-        }
+            scoreBox.Text = ((TwoZeroFourEightModel)m).GetScore().ToString();
+            GameOverBox.Visible = ((TwoZeroFourEightModel)m).GameOver();
 
+
+
+        }
         private void UpdateTile(Label l, int i)
         {
             if (i != 0)
@@ -49,7 +53,7 @@ namespace twozerofoureight
                     l.BackColor = Color.DarkGray;
                     break;
                 case 4:
-                    l.BackColor = Color.Orange;
+                    l.BackColor = Color.Gold;
                     break;
                 case 8:
                     l.BackColor = Color.Red;
@@ -98,6 +102,38 @@ namespace twozerofoureight
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if(keyData == Keys.Up)
+            {
+                
+               controller.ActionPerformed(TwoZeroFourEightController.UP); ;
+               return true;
+            }  
+            if(keyData == Keys.Right)
+            {
+                 
+                controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+                return true;
+            }
+            if(keyData == Keys.Down)
+            {
+                 
+                controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+                return true;
+            }
+            if(keyData == Keys.Left)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+                return true;
+            }
+            return false;
+            
+            
+        }
+
+        
 
     }
 }
